@@ -20,7 +20,7 @@ Plugin Developed by August Infotech [Visit website](http://www.augustinfotech.co
 
 == Installation ==
 
-1. Upload the *"ai-woocommerce-links"* folder into the *"/wp-content/plugins/"* directory.
+1. Upload the *"woocommerce-menu-extension"* folder into the *"/wp-content/plugins/"* directory.
 2. Activate the plugin through the *"Plugins"* menu in WordPress.
 3. You can now add WooCommerce links in your Navigation Menus.
 4. See FAQ for usage.
