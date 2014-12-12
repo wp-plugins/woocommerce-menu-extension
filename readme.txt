@@ -8,7 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-Add ‘WooCommerce Links’ into your WordPress menus just the way you are adding other menu items!
+Add *"WooCommerce Links"* into your WordPress menus just the way you are adding other menu items!
 
 Features :
 
@@ -31,9 +31,9 @@ Plugin Developed by August Infotech [Visit website](http://www.augustinfotech.co
 
 = How does this works? =
 
-Visit your navigation admin menu page, you got a new box including 9 links, 'shop', 'account', 'cart', 'log in', 'logout', 'log in/logout', 'checkout', 'payment', 'register'.
+Visit your navigation admin menu page, you got a new box including 9 links, *"shop"*, *"account"*, *"cart"*, *"log in"*, *"logout"*, *"log in/logout"*, *"checkout"*, *"payment"*, *"register"*.
 
-* Add the link you want, for example "Log in|Logout"
+* Add the link you want, for example *"Log in|Logout"*
 * You can change the 2 titles links, just separate them with a | (pipe)
 
 You can also add 9 shortcodes in your theme template or in your pages/posts. just do this :
@@ -41,10 +41,10 @@ You can also add 9 shortcodes in your theme template or in your pages/posts. jus
 * For theme : `<?php echo do_shortcode( '[loginout]' ); ?>`
 * In you posts/pages : `[loginout]`
 
-The 9 shortcodes are "[shop]", "[account]", "[cart]", "[login]", "[logout]", "[loginout]", "[checkout]", "[payment]" and "[register]".
+The 9 shortcodes are `[shop]`, `[account]`, `[cart]`, `[login]`, `[logout]`, `[loginout]`, `[checkout]`, `[payment]` and `[register]`.
 
-* You can set 1 parameters, named "edit_tag".
-* Edit_tag: used to modify the <a> tag, ; example " class='myclass'" or " id='myid' class='myclass' rel='friend'" etc.
+* You can set 1 parameters, named *"edit_tag"*.
+* Edit_tag: used to modify the tag, example <a> "class='myclass'" or "id='myid' class='myclass' rel='friend'" etc.
 
 You can also modify the title link with [login]Click here to connect[/login] for example.
 
