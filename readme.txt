@@ -1,9 +1,9 @@
 === Plugin Name ===
 Contributors: augustinfotech
-Tags: woocommerce, login, log in, logout, menu, checkout, cart, account, register, payment, links.
+Tags: woocommerce, menu, shop, cart, login, logout, loginout, checkout, myaccount, links.
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,22 +31,25 @@ Plugin Developed by August Infotech [Visit website](http://www.augustinfotech.co
 
 = How does this works? =
 
-Visit your navigation admin menu page, you got a new box including 9 links, *"shop"*, *"account"*, *"cart"*, *"log in"*, *"logout"*, *"log in/logout"*, *"checkout"*, *"payment"*, *"register"*.
+Visit your navigation admin menu page, you got a new box including 8 links, *"Shop"*, *"Cart"*, *"Log In"*, *"Log Out"*, *"Log In|Log Out"*, *"Checkout"*, *"Terms"*, *"My Account"*.
 
-* Add the link you want, for example *"Log in|Logout"*
+* Add the link you want, for example *"Log In|Log Out"*
 * You can change the 2 titles links, just separate them with a | (pipe)
+* You can add a page for redirection, example *"#aiwoologout#index.php"* or *"#aiwoologinout#index.php"*. This will redirect users on site index.
 
-You can also add 9 shortcodes in your theme template or in your pages/posts. just do this :
+You can also add 8 shortcodes in your theme template or in your pages/posts. just do this :
 
 * For theme : `<?php echo do_shortcode( '[loginout]' ); ?>`
 * In you posts/pages : `[loginout]`
 
-The 9 shortcodes are `[shop]`, `[account]`, `[cart]`, `[login]`, `[logout]`, `[loginout]`, `[checkout]`, `[payment]` and `[register]`.
+The 8 shortcodes are `[shop]`, `[cart]`, `[login]`, `[logout]`, `[loginout]`, `[checkout]`, `[terms]` and `[myaccount]`.
 
-* You can set 1 parameters, named *"edit_tag"*.
-* Edit_tag: used to modify the tag, example <a> "class='myclass'" or "id='myid' class='myclass' rel='friend'" etc.
+* You can set 1 parameter to all shortcodes, named *"edit_tag"*.
+* Edit_tag: used to modify the tag, example :<a> "class='myclass'" or "id='myid' class='myclass' rel='myrel'" etc.
+* You can set 1 parameter to `[logout]` and `[loginout]`, named *"redirect"*.
+* Redirect: used to redirect the user after the action (logout) ; example :<a> "/home/" or "index.php". 
 
-You can also modify the title link with [login]Click here to connect[/login] for example.
+You can also modify the title link with `[login]My Title[/login]` for example.
 
 == Screenshots ==
 
@@ -56,6 +59,9 @@ You can also modify the title link with [login]Click here to connect[/login] for
 
 = 1.0 =
 * First Version
+
+= 2.0 =
+* Standard Upgrade Version
 
 
 == Upgrade Notice ==

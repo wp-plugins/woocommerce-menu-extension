@@ -17,36 +17,32 @@ add_filter( 'wp_setup_nav_menu_item', 'aiwoo_setup_nav_menu_item' );
 function aiwoo_setup_nav_menu_item( $item )
 {
 	global $pagenow, $woocommerce;
-	if( $pagenow!='nav-menus.php' && !defined('DOING_AJAX') && isset( $item->url ) && strstr( $item->url, '#aiwoo' ) != '' ){
+	if( $pagenow!='nav-menus.php' && !defined('DOING_AJAX') && isset( $item->url ) && strstr( $item->url, '#aiwoo' ) != '' ) {
 		$item_url = substr( $item->url, 0, strpos( $item->url, '#', 1 ) ) . '#';
-		$myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
+		$item_redirect = str_replace( $item_url, '', $item->url );
 		
-		if ( get_option( 'woocommerce_enable_myaccount_registration' ) === 'yes' )
-			$aiwooregister = get_permalink( $myaccount_page_id );
+		if(!empty($item_redirect))
+			$item_redirect = $item_redirect;
 		else
-			$aiwooregister = $woocommerce->cart->get_checkout_url();
-			
-		switch( $item_url ) {
-			case '#aiwooshop#'     :	$item->url = get_permalink( woocommerce_get_page_id( 'shop' ) ); break;
+			$item_redirect = get_permalink( woocommerce_get_page_id( 'myaccount' ) );
 		
-			case '#aiwooaccount#'  :	$item->url = get_permalink( $myaccount_page_id ); break;
-	
-			case '#aiwoocart#'	   :	$item->url = $woocommerce->cart->get_cart_url(); break;
+		switch( $item_url ) {
+			case '#aiwooshop#'		 :	$item->url = get_permalink( woocommerce_get_page_id( 'shop' ) ); break;
 			
-			case '#aiwoologinout#' :	$item->url = is_user_logged_in() ? wp_logout_url( get_permalink( $myaccount_page_id ) ) : get_permalink( $myaccount_page_id );
+			case '#aiwoocart#'		 :	$item->url = get_permalink( woocommerce_get_page_id( 'cart' ) ); break;
+			
+			case '#aiwoologin#'		 : 	$item->url = get_permalink( woocommerce_get_page_id( 'myaccount' ) ); break;
+			
+			case '#aiwoologout#'	 : 	$item->url = wp_logout_url( $item_redirect ); break;
+			
+			case '#aiwoologinout#'	 :	$item->url = is_user_logged_in() ? wp_logout_url( $item_redirect ) : get_permalink( woocommerce_get_page_id( 'myaccount' ) );
 										$item->title = aiwoo_loginout_title( $item->title ) ; break;
-									
-			case '#aiwoologin#'    : 	$item->url = get_permalink( $myaccount_page_id ); break;
 			
-			case '#aiwoologout#'   : 	$item->url = wp_logout_url( get_permalink( $myaccount_page_id ) ); break;
+			case '#aiwoocheckout#'	 :	$item->url = get_permalink( woocommerce_get_page_id( 'checkout' ) ); break;	
 			
-			case '#aiwoocheckout#' :	$item->url = $woocommerce->cart->get_checkout_url(); break;
+			case '#aiwooterms#'	 	 :	$item->url = get_permalink( woocommerce_get_page_id( 'terms' ) ); break;
 			
-			case '#aiwoopayment#'  :	$item->url = get_permalink( woocommerce_get_page_id( 'pay' ) ); break;
-			
-			case '#aiwooregister#' : 	if( is_user_logged_in() ) $item->title = '#aiwooregister#'; else $item->url = $aiwooregister; break;
-			
-			
+			case '#aiwoomyaccount#'	 :	$item->url = get_permalink( woocommerce_get_page_id( 'myaccount' ) ); break;			
 		}
 		$item->url = esc_url( $item->url );
 	}
@@ -77,22 +73,6 @@ function aiwoo_shortcode_shop( $atts, $content = null )
 	return '<a href="' . esc_url( $href ) . '"' .$edit_tag . '>' . $content . '</a>';
 }
 
-/* [account] shortcode */
-add_shortcode( 'account', 'aiwoo_shortcode_account' );
-function aiwoo_shortcode_account( $atts, $content = null )
-{
-	global $woocommerce;
-	extract(shortcode_atts(array(
-		"edit_tag" => ""
-	), $atts ) );
-	
-	$edit_tag = esc_html( strip_tags( $edit_tag ) );
-	$myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
-	$href = get_permalink( $myaccount_page_id );
-	$content = $content != '' ? $content : __( 'Account' );
-	return '<a href="' . esc_url( $href ) . '"' .$edit_tag . '>' . $content . '</a>';
-}
-
 /* [cart] shortcode */
 add_shortcode( 'cart', 'aiwoo_shortcode_cart' );
 function aiwoo_shortcode_cart( $atts, $content = null )
@@ -103,7 +83,7 @@ function aiwoo_shortcode_cart( $atts, $content = null )
 	), $atts ) );
 	
 	$edit_tag = esc_html( strip_tags( $edit_tag ) );
-	$href = $woocommerce->cart->get_cart_url();
+	$href = get_permalink( woocommerce_get_page_id( 'cart' ) );
 	$content = $content != '' ? $content : __( 'Cart' );
 	return '<a href="' . esc_url( $href ) . '"' .$edit_tag . '>' . $content . '</a>';
 }
@@ -112,32 +92,13 @@ function aiwoo_shortcode_cart( $atts, $content = null )
 add_shortcode( 'login', 'aiwoo_shortcode_login' );
 function aiwoo_shortcode_login( $atts, $content = null )
 {
+	global $woocommerce;
 	extract(shortcode_atts(array(
 		"edit_tag" => ""
 	), $atts ) );
 	$edit_tag = esc_html( strip_tags( $edit_tag ) );
-	$myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
-	$href = get_permalink( $myaccount_page_id );
+	$href = get_permalink( woocommerce_get_page_id( 'myaccount' ) );
 	$content = $content != '' ? $content : __( 'Log In' );
-	return '<a href="' . esc_url( $href ) . '"' .$edit_tag . '>' . $content . '</a>';
-}
-
-/* [loginout] shortcode */
-add_shortcode( 'loginout', 'aiwoo_shortcode_loginout' );
-function aiwoo_shortcode_loginout( $atts, $content = null )
-{
-	$myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
-	extract(shortcode_atts(array(
-		"edit_tag" => ""
-	), $atts ) );
-	$edit_tag = strip_tags( $edit_tag );
-	$href = is_user_logged_in() ? wp_logout_url( get_permalink( $myaccount_page_id ) ) : get_permalink( $myaccount_page_id );
-	if( $content && strstr( $content, '|' ) != '' ) { // the "|" char is used to split titles
-		$content = explode( '|', $content );
-		$content = is_user_logged_in() ? $content[1] : $content[0];
-	}else{
-		$content = is_user_logged_in() ? __( 'Logout' ) : __( 'Log In' );
-	}
 	return '<a href="' . esc_url( $href ) . '"' .$edit_tag . '>' . $content . '</a>';
 }
 
@@ -145,13 +106,34 @@ function aiwoo_shortcode_loginout( $atts, $content = null )
 add_shortcode( 'logout', 'aiwoo_shortcode_logout' );
 function aiwoo_shortcode_logout( $atts, $content = null )
 {
-	$myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
+	global $woocommerce;
 	extract(shortcode_atts(array(
-		"edit_tag" => ""
+		"edit_tag" => "",
+		"redirect" => get_permalink( woocommerce_get_page_id( 'myaccount' ) )
 	), $atts ) );
-	$href = wp_logout_url( get_permalink( $myaccount_page_id ) );
+	$href = wp_logout_url( $redirect );
 	$edit_tag = esc_html( strip_tags( $edit_tag ) );
 	$content = $content != '' ? $content : __( 'Logout' );
+	return '<a href="' . esc_url( $href ) . '"' .$edit_tag . '>' . $content . '</a>';
+}
+
+/* [loginout] shortcode */
+add_shortcode( 'loginout', 'aiwoo_shortcode_loginout' );
+function aiwoo_shortcode_loginout( $atts, $content = null )
+{
+	global $woocommerce;
+	extract(shortcode_atts(array(
+		"edit_tag" => "",
+		"redirect" => get_permalink( woocommerce_get_page_id( 'myaccount' ) )
+	), $atts ) );
+	$edit_tag = strip_tags( $edit_tag );
+	$href = is_user_logged_in() ? wp_logout_url( $redirect ) : get_permalink( woocommerce_get_page_id( 'myaccount' ) );
+	if( $content && strstr( $content, '|' ) != '' ) { // the "|" char is used to split titles
+		$content = explode( '|', $content );
+		$content = is_user_logged_in() ? $content[1] : $content[0];
+	}else{
+		$content = is_user_logged_in() ? __( 'Logout' ) : __( 'Log In' );
+	}
 	return '<a href="' . esc_url( $href ) . '"' .$edit_tag . '>' . $content . '</a>';
 }
 
@@ -165,14 +147,14 @@ function aiwoo_shortcode_checkout( $atts, $content = null )
 	), $atts ) );
 	
 	$edit_tag = esc_html( strip_tags( $edit_tag ) );
-	$href = $item->url = $woocommerce->cart->get_checkout_url();
+	$href = get_permalink( woocommerce_get_page_id( 'checkout' ) );
 	$content = $content != '' ? $content : __( 'Checkout' );
 	return '<a href="' . esc_url( $href ) . '"' .$edit_tag . '>' . $content . '</a>';
 }
 
-/* [payment] shortcode */
-add_shortcode( 'payment', 'aiwoo_shortcode_payment' );
-function aiwoo_shortcode_payment( $atts, $content = null )
+/* [terms] shortcode */
+add_shortcode( 'terms', 'aiwoo_shortcode_terms' );
+function aiwoo_shortcode_terms( $atts, $content = null )
 {
 	global $woocommerce;
 	extract(shortcode_atts(array(
@@ -180,26 +162,22 @@ function aiwoo_shortcode_payment( $atts, $content = null )
 	), $atts ) );
 	
 	$edit_tag = esc_html( strip_tags( $edit_tag ) );
-	$href = $item->url = get_permalink( woocommerce_get_page_id( 'pay' ) );
-	$content = $content != '' ? $content : __( 'Payment' );
+	$href = get_permalink( woocommerce_get_page_id( 'terms' ) );
+	$content = $content != '' ? $content : __( 'Terms' );
 	return '<a href="' . esc_url( $href ) . '"' .$edit_tag . '>' . $content . '</a>';
 }
 
-/* [register] shortcode */
-add_shortcode( 'register', 'aiwoo_shortcode_register' );
-function aiwoo_shortcode_register( $atts, $content = null )
+/* [myaccount] shortcode */
+add_shortcode( 'myaccount', 'aiwoo_shortcode_myaccount' );
+function aiwoo_shortcode_myaccount( $atts, $content = null )
 {
-	$myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' );
-	if ( get_option( 'woocommerce_enable_myaccount_registration' ) === 'yes' )
-		$aiwooregister = get_permalink( $myaccount_page_id );
-	else
-		$aiwooregister = $woocommerce->cart->get_checkout_url();
-		
-	if( is_user_logged_in() )
-		return '';
-		
-	$href = $aiwooregister;
-	$content = $content != '' ? $content : __( 'Register' );
-	$link = '<a href="' . $href. '">' . $content . '</a>';
-	return $link;
+	global $woocommerce;
+	extract(shortcode_atts(array(
+		"edit_tag" => ""
+	), $atts ) );
+	
+	$edit_tag = esc_html( strip_tags( $edit_tag ) );
+	$href = get_permalink( woocommerce_get_page_id( 'myaccount' ) );
+	$content = $content != '' ? $content : __( 'Myaccount' );
+	return '<a href="' . esc_url( $href ) . '"' .$edit_tag . '>' . $content . '</a>';
 }
