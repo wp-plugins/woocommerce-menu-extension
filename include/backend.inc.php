@@ -13,7 +13,7 @@ function aiwoo_nav_menu_metabox( $object )
 {
 	global $nav_menu_selected_id;
 
-	$elems = array( '#aiwooshop#' => __( 'Shop' ), '#aiwoocart#' => __( 'Cart' ), '#aiwoologin#' => __( 'Log In' ), '#aiwoologout#' => __( 'Log Out' ), '#aiwoologinout#' => __( 'Log In' ).'|'.__( 'Log Out' ), '#aiwoocheckout#' => __( 'Checkout' ), '#aiwooterms#' => __( 'Terms' ), '#aiwoomyaccount#' => __( 'My Account' )  );
+	$elems = array( '#aiwooshop#' => __( 'Shop' ), '#aiwoocart#' => __( 'Cart' ), '#aiwoobasket#' => __( 'Basket' ), '#aiwoologin#' => __( 'Log In' ), '#aiwoologout#' => __( 'Log Out' ), '#aiwoologinout#' => __( 'Log In' ).'|'.__( 'Log Out' ), '#aiwoocheckout#' => __( 'Checkout' ), '#aiwooterms#' => __( 'Terms' ), '#aiwoomyaccount#' => __( 'My Account' ), '#aiwoosearch#' => __( 'Search Product' ).'|'.__( 'Search' )  );
 	class aiwoologItems {
 		public $db_id = 0;
 		public $object = 'aiwoolog';
@@ -69,7 +69,7 @@ function aiwoo_nav_menu_metabox( $object )
 add_filter( 'wp_setup_nav_menu_item', 'aiwoo_nav_menu_type_label' );
 function aiwoo_nav_menu_type_label( $menu_item )
 {
-	$elems = array( '#aiwooshop#', '#aiwoocart#', '#aiwoologin#', '#aiwoologout#', '#aiwoologinout#', '#aiwoocheckout#', '#aiwooterms#', '#aiwoomyaccount#' );
+	$elems = array( '#aiwooshop#', '#aiwoocart#', '#aiwoobasket#', '#aiwoologin#', '#aiwoologout#', '#aiwoologinout#', '#aiwoocheckout#', '#aiwooterms#', '#aiwoomyaccount#', '#aiwoosearch#' );
 	
 	$menu_item_array = explode('#', $menu_item->url);
 	$menu_item_url = '#'.$menu_item_array[1].'#';
