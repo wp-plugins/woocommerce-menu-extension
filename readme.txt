@@ -32,6 +32,7 @@ Plugin Developed by August Infotech [Visit website](http://www.augustinfotech.co
 = How does this works? =
 
 Visit your navigation admin menu page, you got a new box including 8 links, *"Shop"*, *"Cart"*, *"Basket"*, *"Log In"*, *"Log Out"*, *"Log In|Log Out"*, *"Checkout"*, *"Terms"*, *"My Account"*, *"Search Product|Search"*.
+
 * Add the link you want, for example *"Log In|Log Out"*.
 * You can change the 2 titles links, just separate them with a | (pipe).
 * You can add the 2 titles links, just separate them with a | (pipe) for *"Search Product|Go"* to display value and button.
