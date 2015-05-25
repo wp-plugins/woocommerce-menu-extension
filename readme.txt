@@ -54,12 +54,12 @@ The 10 shortcodes are `[aishop]`, `[aicart]`, `[aibasket]`, `[ailogin]`, `[ailog
 * Redirect: used to redirect the user after the action (logout) ; example :<a> "/home/" or "index.php".
 * You can set 6 parameter to `[aiproductcat]` to show count, example : "show_count='1'".
 
-1) Show Count : show_count (0 or 1)
-2) Show in dropdown : dropdown (0 or 1)
-3) Heirarchical : heirarchical (0 or 1)
-4) Show only children : show_count (0 or 1)
-5) Hide empty : hide_empty (0 or 1)
-6) Order : orderby (order or title)
+1. Show Count : show_count (0 or 1).
+2. Show in dropdown : dropdown (0 or 1).
+3. Heirarchical : heirarchical (0 or 1).
+4. Show only children : show_count (0 or 1).
+5. Hide empty : hide_empty (0 or 1).
+6. Order : orderby (order or title).
 
 You can also modify the title link with `[ailogin]My Title[/ailogin]` for example.
 
