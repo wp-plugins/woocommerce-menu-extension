@@ -3,15 +3,17 @@
 Plugin Name: WooCommerce Menu Extension
 Plugin URI: http://www.augustinfotech.com
 Description: You can now add woocommerce links in your WP menus.
-Version: 1.2
+Version: 1.3
 Text Domain: woocommerce-menu-extension
 Author: August Infotech
 Author URI: http://www.augustinfotech.com
 */
 
-define( 'AIWOO_VERSION', '1.2' );
+define( 'AIWOO_VERSION', '1.3' );
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+define('AI_WOO_PATH', plugin_dir_path( __FILE__ ));
 
 if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) { 
 

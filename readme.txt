@@ -2,8 +2,8 @@
 Contributors: augustinfotech
 Tags: woocommerce, menu, shop, cart, basket, login, logout, loginout, checkout, myaccount, links, product, search.
 Requires at least: 3.0
-Tested up to: 4.2.1
-Stable tag: 1.2
+Tested up to: 4.2.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,8 @@ Features :
 
 * With this plugin you can now add a WooCommerce links to existing WordPress menu.
 * You can also add login/logout menu with auto switch functionality based on user's login state.
+* You can also add WooCommerce search to menu.
+* You can also add multiple WooCommerce shortcodes whereever you want.
 * Nonce token is present on logout item.
 
 Plugin Developed by August Infotech [Visit website](http://www.augustinfotech.com)
@@ -38,32 +40,37 @@ Visit your navigation admin menu page, you got a new box including 8 links, *"Sh
 * You can add the 2 titles links, just separate them with a | (pipe) for *"Search Product|Go"* to display value and button.
 * You can add a page for redirection, example *"#aiwoologout#index.php"* or *"#aiwoologinout#index.php"*. This will redirect users on site index.
 
-You can also add 10 shortcodes in your theme template or in your pages/posts. just do this :
+You can also add 11 shortcodes in your theme template or in your pages/posts. just do this :
 
 * For theme : `<?php echo do_shortcode( '[ailoginout]' ); ?>`
 * In you posts/pages : `[ailoginout]`
 
-The 10 shortcodes are `[aishop]`, `[aicart]`, `[aibasket]`, `[ailogin]`, `[ailogout]`, `[ailoginout]`, `[aicheckout]`, `[aiterms]`, `[aimyaccount]` and `[aisearch]`.
+The 10 shortcodes are `[aishop]`, `[aicart]`, `[aibasket]`, `[ailogin]`, `[ailogout]`, `[ailoginout]`, `[aicheckout]`, `[aiterms]`, `[aimyaccount]`, `[aisearch]` and `[aiproductcat]`.
 
 * You can set 1 parameter to all shortcodes, named *"edit_tag"*.
 * Edit_tag: used to modify the tag, example :<a> "class='myclass'" or "id='myid' class='myclass' rel='myrel'" etc.
 * You can set 1 parameter to `[aisearch]` to change button name, example : "button='Button Title'".
 * You can set 1 parameter to `[ailogout]` and `[ailoginout]`, named *"redirect"*.
-* Redirect: used to redirect the user after the action (logout) ; example :<a> "/home/" or "index.php". 
+* Redirect: used to redirect the user after the action (logout) ; example :<a> "/home/" or "index.php".
+* You can set 6 parameter to `[aiproductcat]` to show count, example : "show_count='1'". 
+1) Show Count : show_count (0 or 1)
+2) Show in dropdown : dropdown (0 or 1)
+3) Heirarchical : heirarchical (0 or 1)
+4) Show only children : show_count (0 or 1)
+5) Hide empty : hide_empty (0 or 1)
+6) Order : orderby (order or title)
 
 You can also modify the title link with `[ailogin]My Title[/ailogin]` for example.
 
 == Screenshots ==
 
-1. The woocommerce menu in nav menu admin page
+1. The woocommerce menu in nav menu admin page.
+2. The woocommerce menu in nav menu front page and Shortcodes Display.
 
 == Changelog ==
 
-= 1.0 =
-* First Version
-
-= 1.1 =
-* Upgrade Version
+= 1.3 =
+* Add product categories shortcode with listing and dropdown functionality.
 
 = 1.2 =
 * Change shortcode title for further confliction possibilities.
@@ -71,6 +78,11 @@ You can also modify the title link with `[ailogin]My Title[/ailogin]` for exampl
 * Add Product search to the menu and shortcode.
 * Add Hello user to the logout shortcode.
 
+= 1.1 =
+* Upgrade Version
+
+= 1.0 =
+* First Version
 
 == Upgrade Notice ==
 
