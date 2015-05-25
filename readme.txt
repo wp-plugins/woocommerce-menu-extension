@@ -52,7 +52,8 @@ The 10 shortcodes are `[aishop]`, `[aicart]`, `[aibasket]`, `[ailogin]`, `[ailog
 * You can set 1 parameter to `[aisearch]` to change button name, example : "button='Button Title'".
 * You can set 1 parameter to `[ailogout]` and `[ailoginout]`, named *"redirect"*.
 * Redirect: used to redirect the user after the action (logout) ; example :<a> "/home/" or "index.php".
-* You can set 6 parameter to `[aiproductcat]` to show count, example : "show_count='1'". 
+* You can set 6 parameter to `[aiproductcat]` to show count, example : "show_count='1'".
+
 1) Show Count : show_count (0 or 1)
 2) Show in dropdown : dropdown (0 or 1)
 3) Heirarchical : heirarchical (0 or 1)
