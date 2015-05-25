@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: augustinfotech
-Tags: woocommerce, menu, shop, cart, basket, login, logout, loginout, checkout, myaccount, links, product, category, search.
+Tags: woocommerce, menu, shop, cart, basket, login, logout, checkout, account, link, product, category, search, shortcode, categories, item.
 Requires at least: 3.0
 Tested up to: 4.2.2
 Stable tag: 1.3
