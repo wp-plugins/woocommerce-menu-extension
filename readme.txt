@@ -33,7 +33,7 @@ Plugin Developed by August Infotech [Visit website](http://www.augustinfotech.co
 
 = How does this works? =
 
-Visit your navigation admin menu page, you got a new box including 8 links, *"Shop"*, *"Cart"*, *"Basket"*, *"Log In"*, *"Log Out"*, *"Log In|Log Out"*, *"Checkout"*, *"Terms"*, *"My Account"*, *"Search Product|Search"*.
+Visit your navigation admin menu page, you got a new box including 10 links, *"Shop"*, *"Cart"*, *"Basket"*, *"Log In"*, *"Log Out"*, *"Log In|Log Out"*, *"Checkout"*, *"Terms"*, *"My Account"*, *"Search Product|Search"*.
 
 * Add the link you want, for example *"Log In|Log Out"*.
 * You can change the 2 titles links, just separate them with a | (pipe).
@@ -45,7 +45,7 @@ You can also add 11 shortcodes in your theme template or in your pages/posts. ju
 * For theme : `<?php echo do_shortcode( '[ailoginout]' ); ?>`
 * In you posts/pages : `[ailoginout]`
 
-The 10 shortcodes are `[aishop]`, `[aicart]`, `[aibasket]`, `[ailogin]`, `[ailogout]`, `[ailoginout]`, `[aicheckout]`, `[aiterms]`, `[aimyaccount]`, `[aisearch]` and `[aiproductcat]`.
+The 11 shortcodes are `[aishop]`, `[aicart]`, `[aibasket]`, `[ailogin]`, `[ailogout]`, `[ailoginout]`, `[aicheckout]`, `[aiterms]`, `[aimyaccount]`, `[aisearch]` and `[aiproductcat]`.
 
 * You can set 1 parameter to all shortcodes, named *"edit_tag"*.
 * Edit_tag: used to modify the tag, example :<a> "class='myclass'" or "id='myid' class='myclass' rel='myrel'" etc.
